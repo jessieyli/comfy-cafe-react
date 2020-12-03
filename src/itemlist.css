@@ -1,0 +1,12 @@
+.navbar {
+  padding: 0 1rem !important;
+}
+
+.filtered {
+  display: grid;
+  grid-template-columns: 32% 32% 32%;
+}
+
+.itemList {
+  margin: 0% 2%;
+}

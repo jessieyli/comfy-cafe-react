@@ -1,0 +1,9 @@
+.card-footer h4 {
+  float:left;
+}
+.card-footer .btn {
+  float:right;
+}
+.cart {
+  padding-right: 2%;
+}
