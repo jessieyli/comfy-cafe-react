@@ -4,10 +4,6 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 class Item extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>

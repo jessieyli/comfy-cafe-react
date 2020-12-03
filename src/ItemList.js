@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import Item from "./Item";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import "./itemlist.css";
+import FilterOptions from "./FilterOptions";
 
 export default class ItemList extends Component {
   constructor(props) {
@@ -68,73 +66,12 @@ export default class ItemList extends Component {
     filteredList = filteredList.filter(this.matchesFilterType);
     return (
       <div className="itemList">
-        <div className="filterOptions">
-          <Navbar>
-            Taste:
-            <Nav defaultActiveKey="All">
-              <Nav.Item>
-                <Nav.Link eventKey="All" onSelect={this.chooseFilterTaste}>
-                  All
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey="Sweet" onSelect={this.chooseFilterTaste}>
-                  Sweet
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey="Salty" onSelect={this.chooseFilterTaste}>
-                  Salty
-                </Nav.Link>
-              </Nav.Item>
-            </Nav>
-          </Navbar>
-          <Navbar>
-            Type:
-            <Nav defaultActiveKey="All">
-              <Nav.Item>
-                <Nav.Link eventKey="All" onSelect={this.chooseFilterType}>
-                  All
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey="Snack" onSelect={this.chooseFilterType}>
-                  Snack
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey="Drink" onSelect={this.chooseFilterType}>
-                  Drink
-                </Nav.Link>
-              </Nav.Item>
-            </Nav>
-          </Navbar>
-          <Navbar>
-            Sort by Price:
-            <Nav defaultActiveKey="0">
-              <NavDropdown title={this.state.sortOrder}>
-                <NavDropdown.Item>
-                  <Nav.Link
-                    eventKey="Select a sort order"
-                    onSelect={this.chooseSortOrder}
-                  >
-                    No Sort
-                  </Nav.Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <Nav.Link eventKey="Lowest to Highest" onSelect={this.chooseSortOrder}>
-                    Lowest to Highest
-                  </Nav.Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <Nav.Link eventKey="Highest to Lowest" onSelect={this.chooseSortOrder}>
-                    Highest to Lowest
-                  </Nav.Link>
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-          </Navbar>
-        </div>
+        <FilterOptions
+          chooseTaste={this.chooseFilterTaste}
+          chooseType={this.chooseFilterType}
+          chooseSort={this.chooseSortOrder}
+          currentSort={this.state.sortOrder}
+        ></FilterOptions>
         <div className="filtered">
           {filteredList.map((item) => (
             <Item
