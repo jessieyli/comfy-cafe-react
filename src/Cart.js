@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
-import InputGroup from "react-bootstrap/InputGroup";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { BsDash, BsPlus } from "react-icons/bs";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import ListGroupItem from "react-bootstrap/ListGroupItem";
 import "./cart.css";
+import CartItem from "./CartItem";
 
 const itemLookup = {
   "Muscat Gummies": [3.52, "https://i.imgur.com/2wcHXbY.jpg"],
@@ -39,50 +34,15 @@ export default class Cart extends Component {
           <Card.Header as="h4">Shopping Cart</Card.Header>
           <ListGroup>
             {Object.keys(this.props.cart).map((itemName) => (
-              <ListGroupItem>
-                <Container>
-                  <Row>
-                    <Col className="text-center col-3">
-                      <img
-                        src={itemLookup[itemName][1]}
-                        height="100"
-                        alt={itemName}
-                      ></img>
-                    </Col>
-                    <Col className="col-6">
-                      <h5>{itemName}</h5>
-                      <InputGroup>
-                        <InputGroup.Prepend>
-                          <Button
-                            variant="secondary"
-                            onClick={() => this.props.removeOne(itemName)}
-                          >
-                            <BsDash />
-                          </Button>
-                        </InputGroup.Prepend>
-                        <InputGroup.Text> {this.props.cart[itemName]}</InputGroup.Text>
-                        <InputGroup.Append>
-                          <Button
-                            variant="secondary"
-                            onClick={() => this.props.addOne(itemName)}
-                          >
-                            <BsPlus />
-                          </Button>
-                        </InputGroup.Append>
-                      </InputGroup>
-                    </Col>
-                    <Col className="col-3 text-center">
-                      <h5>${itemLookup[itemName][0]}</h5>
-                      <Button
-                        variant="danger"
-                        onClick={() => this.props.remove(itemName)}
-                      >
-                        Remove
-                      </Button>
-                    </Col>
-                  </Row>
-                </Container>
-              </ListGroupItem>
+              <CartItem
+                item={itemName}
+                image={itemLookup[itemName][1]}
+                price={itemLookup[itemName][0]}
+                quantity={this.props.cart[itemName]}
+                removeOne={this.props.removeOne}
+                addOne={this.props.addOne}
+                remove={this.props.remove}
+              ></CartItem>
             ))}
           </ListGroup>
           <Card.Footer>
