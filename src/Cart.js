@@ -5,6 +5,8 @@ import ListGroup from "react-bootstrap/ListGroup";
 import "./cart.css";
 import CartItem from "./CartItem";
 
+// each item's image and price, so we don't need the entire original
+// item list from App.js
 const itemLookup = {
   "Muscat Gummies": [3.52, "https://i.imgur.com/2wcHXbY.jpg"],
   "Chocolate Pocky": [2.09, "https://i.imgur.com/hXGwDYz.png"],
@@ -23,6 +25,7 @@ const itemLookup = {
 
 export default class Cart extends Component {
   render() {
+    // calculate total price
     let total = Object.keys(this.props.cart).reduce(
       (previous, key) => previous + this.props.cart[key] * itemLookup[key][0],
       0
