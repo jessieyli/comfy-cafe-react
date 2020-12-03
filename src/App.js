@@ -4,6 +4,7 @@ import Cart from "./Cart";
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+// each item and its associated information
 const itemList = [
   {
     name: "Muscat Gummies",
@@ -118,7 +119,8 @@ class App extends React.Component {
       cart: {},
     };
   }
-
+ 
+  // adds an item to the cart
   addToCart = (name) => {
     let newCart = { ...this.state.cart }; // create copy of the cart
     if (name in newCart) {
@@ -130,18 +132,21 @@ class App extends React.Component {
     this.setState({ cart: newCart });
   };
 
+  // removes an item from the cart
   removeFromCart = (name) => {
     let newCart = { ...this.state.cart };
     delete newCart[name];
     this.setState({ cart: newCart });
   };
 
+  // increases the quantity of an item
   addOne = (name) => {
     let newCart = { ...this.state.cart };
     newCart[name] += 1;
     this.setState({ cart: newCart });
   };
 
+  // decreases the quantity of an item
   removeOne = (name) => {
     let newCart = { ...this.state.cart };
     if (newCart[name] === 1) {
