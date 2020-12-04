@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+# comfy cafe
+Installations: 
+`npm create-react-app comfy-cafe` 
+`cd comfy-cafe` 
+`npm install react-bootstrap bootstrap` 
+`npm install react-icons --save` 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Organization of Components
+```
+comfy-cafe-react/
+└── src/
+   └── App.js
+       ├── ItemList.js
+           ├── FilterOptions.js
+           └── Item.js
+       └── Cart.js
+           └── CartItem.js
+```
+The main page is App.js and stylized by App.css. Within App.js, there are two main components: ItemList.js and Cart.js
+ItemList is then further broken up into two components, one for the various different filter and sorting options (FilterOption.js) and one for displaying each individual item (Item.js). Cart.js also contains a CartItem.js component which displays each individual item in the shopping cart, including options to change the quantity and remove an item from the cart. 
 
-## Available Scripts
+## How Data is Passed
+In App.js, a variable stores the list of items and their properties such as name, image url, sweet vs salty, and snack vs drink. This list is passed to the ItemList component, along with an add function that allows the user to add an item to the cart. In the ItemList component, there are multiple functions that allow the user to select between two filters types and sort by price, which are passed to the FilterOptions component. FilterOptions then displays these different options as buttons and a dropdown. Back in ItemList, each item's information (name, price, sweet or salty) is passed to the Item component in order to display each item in a consistent manner. Returning back to App.js, data about the contents of the cart and the cart-specific functions (addOne, removeOne, removeFromCart) are passed to the Cart component. This is because the contents of the cart are maintained in App.js and we need both ItemList and Cart to connect to this information. In the Cart component, there is an ItemLookup object that allows the Cart to fetch the price and image url of each item in the cart based on its name, thus making it so that we don't need the entire original list passed to Cart. With this, Cart then passes information about each item (name, price, image url) and the functions (addOne, removeOne, removeFromCart) to CartItem, so that each item in the Cart can be displayed with buttons that only act on that specific item in the cart.
 
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## How User Triggers State Changes
+In App.js, the user triggers a state change every time something is updated in the cart. In other words, when the user clicks the 'Add to Cart' button, minus button, plus button, or 'Remove' button, a state change is triggered in order to properly display the contents of the cart. There are also state changes in ItemList that are triggered when a user selects a filter or sort order in the FilterOptions component. The state stores the selected taste, type, and sortOrder in ItemList so that the proper items can be displayed with the correct filters and sort.
