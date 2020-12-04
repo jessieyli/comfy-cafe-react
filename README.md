@@ -4,6 +4,8 @@ Installations:
 `cd comfy-cafe` 
 `npm install react-bootstrap bootstrap` 
 `npm install react-icons --save` 
+Deployed at: https://comfy-cafe-20.herokuapp.com/
+Short demo: [Imgur](https://i.imgur.com/IVXIW7B.gifv)
 
 ## Organization of Components
 ```
