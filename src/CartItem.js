@@ -13,11 +13,11 @@ export default class CartItem extends Component {
       <ListGroupItem>
         <Container>
           <Row>
-            // displays item image
+            {/* displays item image */}
             <Col className="text-center col-3">
               <img src={this.props.image} height="100" alt={this.props.item}></img>
             </Col>
-            // displays item name and quantity
+            {/* displays item name and quantity */}
             <Col className="col-6">
               <h5>{this.props.item}</h5>
               <InputGroup>
@@ -40,7 +40,7 @@ export default class CartItem extends Component {
                 </InputGroup.Append>
               </InputGroup>
             </Col>
-            // displays item price and remove button
+            {/* displays item price and remove button */}
             <Col className="col-3 text-center">
               <h5>${this.props.price}</h5>
               <Button variant="danger" onClick={() => this.props.remove(this.props.item)}>
